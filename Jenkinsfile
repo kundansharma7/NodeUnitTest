@@ -13,7 +13,7 @@ pipeline {
             }
         stage('deploy') { 
                 steps {
-                    sh 'npm test' 
+                    sh 'node server.js' 
                 }
             }
         }
