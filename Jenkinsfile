@@ -1,39 +1,26 @@
 pipeline {
-    environment {
-        //This variable need be tested as string
-        doError = '1'
-    }
-   
     agent any
-    
     stages {
-        stage('Error') {
-            when {
-                expression { doError == '1' }
-            }
+        stage('Build') { 
             steps {
-                echo "Failure"
-                error "failure test. It's work"
+                sh 'npm install' 
             }
         }
-        
-        stage('Success') {
-            when {
-                expression { doError == '0' }
+        stage('test') { 
+                steps {
+                    sh 'npm test' 
+                }
             }
-            steps {
-                echo "ok"
+        stage('deploy') { 
+                steps {
+                    sh 'node server.js' 
+                }
             }
         }
-    }
     post {
         always {
-            echo 'I will always say Hello again!'
-            
             emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
-                recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
-                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
-            
+, subject: 'Testing Mail', to: 'kundan@silverpush.co'
         }
     }
 }
