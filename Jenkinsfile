@@ -1,25 +1,4 @@
-pipeline {
-    agent any
-    stages {
-        stage('Build') { 
-            steps {
-                sh 'npm install' 
-            }
-        }
-        stage('test') { 
-                steps {
-                    sh 'npm test' 
-                }
-            }
-        stage('deploy') { 
-                steps {
-                    sh 'node server.js' 
-                }
-            }
-        }
-    post {
-        always {
+
+        node {
             emailext body: 'Mail body1', subject: 'Testing Mail', to: 'kundan@silverpush.co'
         }
-    }
-}
