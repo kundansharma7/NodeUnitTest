@@ -19,7 +19,7 @@ pipeline {
         }
     post {
         always {
-            emailext body: 'Mail body', subject: 'Testing Mail', to: 'kundan@silverpush.co'
+            emailext body: 'Mail body1', subject: 'Testing Mail', to: 'kundan@silverpush.co'
         }
     }
 }
