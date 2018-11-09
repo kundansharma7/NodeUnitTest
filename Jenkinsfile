@@ -10,7 +10,7 @@ pipeline {
     }
     post {
         always {
-            emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+            emailext body: 'Mail body1', subject: 'Testing Mail', to: 'kundan@silverpush.co'
         }
     }
 }
