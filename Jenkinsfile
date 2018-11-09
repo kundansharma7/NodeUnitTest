@@ -1,4 +1,4 @@
 
         node {
-            emailext body: 'Mail body1', subject: 'Testing Mail', to: 'kundan@silverpush.co'
+            emailext body: 'Mail body1', subject: 'Testing Mail', to: 'kundankumar.jayant@gmail.com'
         }
